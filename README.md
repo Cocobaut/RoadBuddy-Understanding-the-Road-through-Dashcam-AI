@@ -91,9 +91,7 @@ Pipeline hai giai đoạn chuyên biệt hóa cho biển phụ, biển giới h�
 * **Tracking:** ByteTrack duy trì `track_id` cho từng biển báo và cụm đèn qua các khung hình, loại bỏ phân mảnh quỹ đạo do xe xóc hoặc bị che khuất ngắn hạn.
 * **Optimal Frame Scoring:** Chọn 1 – 2 khung hình có độ phân giải và chất lượng tốt nhất trước khi biển báo ra khỏi trường nhìn (FOV):
 
-``` math
-S(f) = \alpha \cdot \frac{\text{Area}(B_f)}{\max_t \text{Area}(B_t)} + (1 - \alpha) \cdot \frac{\operatorname{LaplacianVar}(I_{B_f})}{\max_t \operatorname{LaplacianVar}(I_{B_t})}
-```
+$ S(f) = \alpha \cdot \frac{\text{Area}(B_f)}{\max_t \text{Area}(B_t)} + (1 - \alpha) \cdot \frac{\operatorname{LaplacianVar}(I_{B_f})}{\max_t \operatorname{LaplacianVar}(I_{B_t})}$
 
 Trong đó:
 
