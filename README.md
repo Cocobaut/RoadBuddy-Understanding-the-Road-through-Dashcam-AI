@@ -91,11 +91,11 @@ Pipeline hai giai đoạn chuyên biệt hóa cho biển phụ, biển giới h�
 * **Tracking:** ByteTrack duy trì `track_id` cho từng biển báo và cụm đèn qua các khung hình, loại bỏ phân mảnh quỹ đạo do xe xóc hoặc bị che khuất ngắn hạn.
 * **Optimal Frame Scoring:** Chọn 1 – 2 khung hình có độ phân giải và chất lượng tốt nhất trước khi biển báo ra khỏi trường nhìn (FOV):
 
-$$
+```math
 S(f) = \alpha \cdot \frac{\text{Area}(B_f)}{\max_t \text{Area}(B_t)} + (1 - \alpha) \cdot \frac{\operatorname{LaplacianVar}(I_{B_f})}{\max_t \operatorname{LaplacianVar}(I_{B_t})}
-$$
+```
 
-*Trong đó:*
+Trong đó:
 
 * $\text{Area}(B_f) = w \times h$ của bounding box tại frame $f$.
 * $\operatorname{LaplacianVar}(I_{B_f}) = \operatorname{Var}(\nabla^2 I_{B_f})$ đo độ sắc nét (chống nhòe chuyển động).
@@ -141,9 +141,9 @@ $$
 1. **Cross-Modal Embedding:**
 * Chiếu câu hỏi $Q$ và các frame $F_t$ vào cùng không gian tiềm ẩn bằng SigLIP (hoặc CLIP-ViT-B/16-multilingual):
 
-$$
+```math
 e_Q = \operatorname{Embed}_{\text{text}}(Q), \quad e_{F_t} = \operatorname{Embed}_{\text{img}}(F_t)
-$$
+```
 
 
 * Điểm tương đồng ngữ nghĩa: $S_t = \cos(e_Q, e_{F_t})$.
@@ -152,9 +152,9 @@ $$
 2. **Temporal Prior Regularization:**
 * Nhân thêm hàm suy giảm Gauss quanh vùng timestamp biến cố $t_{\text{event}}$ để loại bỏ các đoạn video trống:
 
-$$
+``` math
 S'_t = S_t \cdot \exp\left(-\frac{(t - t_{\text{event}})^2}{2\sigma^2}\right)
-$$
+```
 
 
 
@@ -189,9 +189,9 @@ $$
 * *Dense Retrieval (FAISS / Qdrant):* Truy vấn ngữ nghĩa tổng quát bằng embedding models (`bge-m3` hoặc `text-embedding-3-large`).
 * *Hợp nhất Reciprocal Rank Fusion (RRF):*
 
-$$
+```math
 \text{RRF\_Score}(d) = \frac{1}{60 + \text{Rank}_{\text{BM25}}(d)} + \frac{1}{60 + \text{Rank}_{\text{Dense}}(d)}
-$$
+```
 
 
 
